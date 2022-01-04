@@ -39,9 +39,10 @@ const agregarTarea = e => {
     pintarTareas()
 }
 const pintarTareas = () => {
+    listaTarea.innerHTML = ""
     Object.values(tareas).forEach(tarea => {
         let clone = template.cloneNode(true);
-        clone.querySelector("p").textContent = tarea.campoTexto
+        clone.querySelector("p").textContent = tarea.nombre
         fragment.appendChild(clone)
     });
     listaTarea.appendChild(fragment)
