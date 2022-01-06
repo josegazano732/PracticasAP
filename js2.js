@@ -23,7 +23,8 @@ formulario.addEventListener("submit", function (e) {
 const agregarTarea = e => {
     // validamos nuestro campo de entrada de texto
     if (campoTexto.value.trim() === "") {
-        console.log("Esta vacio");
+        // console.log("Esta vacio");
+        alert("El campo agregar tarea esta vacio.");
         return
     }
     // Construimos nuestros objeto
@@ -31,18 +32,18 @@ const agregarTarea = e => {
         id: Date.now(),
         nombre: campoTexto.value
     }
-    // Empujamos nuestra coleccion de "nuevaTarea" a nuestra variable "tareas"
+    // Empujamos nuestra coleccion de "nuevaTarea" a nuestra variable "tareas" 
     tareas[nuevaTarea.id] = nuevaTarea
     //console.log(tareas);
-    formulario.reset();
+    formulario.reset(); // luego reseteamos los valores.
     campoTexto.focus();
-    pintarTareas()
+    pintarTareas() // Una vez que empujamos nuestra nuevaTarea a la variable tareas generamos una funcion para pintar en el Dom nuestra tarea.
 }
 const pintarTareas = () => {
-    listaTarea.innerHTML = ""
-    Object.values(tareas).forEach(tarea => {
-        let clone = template.cloneNode(true);
-        clone.querySelector("p").textContent = tarea.nombre
+    listaTarea.innerHTML = "" // limpiamos nuetra lista tarea.
+    Object.values(tareas).forEach(tarea => {  // Accedemos a tareas recorremos con un forEach.
+        let clone = template.cloneNode(true); // Clonamos los nodos de template 
+        clone.querySelector("p").textContent = tarea.nombre // Accedemos con querySelector al elemento "p" 
         fragment.appendChild(clone)
     });
     listaTarea.appendChild(fragment)
